@@ -3,10 +3,10 @@
 const apiKey = '&appid=9f15e45060210ec849a698b3298f0bed&units=imperial';
 
 // Event listener to add function to existing HTML DOM element
-document.getElementById('post').addEventListener('click', performPostRequest);
+document.getElementById('post').addEventListener('click', performAction);
 
 // Function called by event listener
-function performPostRequest(e) {
+function performAction(e) {
   // Retrieve the zipcode entered by the user via the DOM input element with the ID 'zip'
   let userZip = document.getElementById('zip').value
   // Use the fetch API to retrieve the current weather data for the users zip code
