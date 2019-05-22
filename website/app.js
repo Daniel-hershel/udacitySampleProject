@@ -1,15 +1,7 @@
-// const axios = require('axios');
+
 // starting variables
 const apiKey = '&appid=9f15e45060210ec849a698b3298f0bed&units=imperial';
 
-
-
-
-
-
-//   var instance = axios.create({
-//     baseURL: "http://localhost:3000" //use your express server's url(address) and port here
-// });
 document.getElementById('post').addEventListener('click', performPostRequest);
 function performPostRequest(e) {
   let userZip = document.getElementById('zip').value
@@ -30,7 +22,6 @@ function performPostRequest(e) {
       .then((resp) => resp.json())
       .then(function(allData){
         console.log(allData)
-        // HERE I THINK I WANT TO ADD THE VALUES FROM THE ROUTE TO POPULATE THE FINAL ENTRYs
         let tempHolder = document.getElementById('temp').innerHTML = Math.round(allData.temp)+ 'degrees';
         let contentHolder = document.getElementById('content').innerHTML = allData.feel
         // Get and set date
