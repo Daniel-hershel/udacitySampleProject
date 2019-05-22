@@ -9,7 +9,7 @@ const express = require('express');
 // Start up an instance of app. 
 const app = express();
 
-// Cors for cross origin aloowance
+// Cors for cross origin allowance
 var cors = require('cors');
 app.use(cors());
 
@@ -32,16 +32,18 @@ function sendData (req, res) {
   res.send(testData)
 }
 
-// Test for adding data from the Server side
-app.get('/add/:temp/:feel', addEntry)
+// Test for adding data from the Server side & Route to use on Client side
+app.get('/add/:temp/:feel/:date', addEntry)
 function addEntry(request, response){
   let data = request.params;
   console.log(data)
   let temp = data.temp;
   let feel= data.feel;
+  let date= data.date;
   
   testData["temp"] = temp;
   testData["feel"] = feel;
+  testData["date"] = date;
   response.send(testData)
 
   console.log(testData)
