@@ -33,8 +33,12 @@ function performAction(e) {
       console.log(newData);
       // Fetch the endpoint of /all route set up in server
    
+    }).catch(function(error) {
+      console.log('There has been a problem with your fetch operation: ', error.message);
     });
-    });
+    }).catch(function(error) {
+      console.log('There has been a problem with your fetch operation: ', error.message);
+    });;
 
 
     fetch('/all')
