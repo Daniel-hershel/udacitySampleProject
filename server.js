@@ -3,10 +3,10 @@ projectData = {
 
 };
 
-// Express to run server
+// Express to run server and routes
 const express = require('express');
 
-// Start up an instance of app. 
+// Start up an instance of app
 const app = express();
 
 // Cors for cross origin allowance
@@ -28,26 +28,31 @@ function listening(){
 app.get('/all', sendData);
 
 // Callback function to complete GET '/all'
-function sendData (req, res) {
-  // res.send('Green')
-  res.send(projectData);
+function sendData (request, response) {
+  // response.send('Green') // If we want to make a mini test framekwork in here
+  response.send(projectData);
 };
 
 // Test for adding data from the Server side & Route to use on Client side
 app.get('/add/:temp/:feel/:date', addEntry);
+// Function to execute 
 function addEntry(request, response){
   let data = request.params;
   console.log(data);
+
   let temp = data.temp;
   let feel= data.feel;
   let date= data.date;
   
+  // Create new entry for JS Object Endpoint
   projectData["temp"] = temp;
   projectData["feel"] = feel;
   projectData["date"] = date;
-  response.send(projectData);
 
-  console.log(projectData);
+  // Send response to Endpoint
+  response.send(projectData);
+  
+  // console.log(projectData);
 };
 
 
