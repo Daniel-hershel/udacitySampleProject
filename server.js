@@ -34,7 +34,7 @@ function sendData (req, res) {
 };
 
 // Test for adding data from the Server side & Route to use on Client side
-app.get('/add/:temp/:feel/:date', addEntry)
+app.get('/add/:temp/:feel/:date', addEntry);
 function addEntry(request, response){
   let data = request.params;
   console.log(data);
