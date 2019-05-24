@@ -2,7 +2,6 @@
 projectData = {
 
 };
-
 // Express to run server and routes
 const express = require('express');
 
@@ -22,7 +21,7 @@ const server = app.listen(3000, listening);
 function listening(){
   // console.log(server);
   console.log(app);
-    };
+};
 
 // Initialize all route with a callback function
 app.get('/all', sendData);

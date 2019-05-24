@@ -27,32 +27,25 @@ function performAction(e) {
     // And create a new entry using the URL structure and the variables retrieved above
     fetch('add/'+ temp + '/'+feeling+ '/'+ NewDate)
     // Transform data into JSON
-    .then((resp) => resp.json()
+    .then((resp) => resp.json())
     // Function to execute once second fetch-- to URL 'add' is successfully completed-- to write the results back to the UI for updates to the DOM elements
     .then(function(newData){
       console.log(newData);
       // Fetch the endpoint of /all route set up in server
-      fetch('/all')
-      // Transform into JSON
-      .then((resp) => resp.json())
-      .then(function(allData){
-        console.log(allData)
-        // Write updated data to DOM elements
-        document.getElementById('temp').innerHTML = Math.round(allData.temp)+ 'degrees';
-        document.getElementById('content').innerHTML = allData.feel
-        document.getElementById("date").innerHTML =allData.date
-      })
-      .catch(function(error) {
-      console.log(error);
-      });   
-    })
-    .catch(function(error) {
-      console.log(error);
+   
     });
-  })
-  .catch(function(error) {
-      console.log(error);
-    });   
+    });
 
 
+    fetch('/all')
+    // Transform into JSON
+    .then((resp) => resp.json())
+    .then(function(allData){
+      console.log(allData)
+      // Write updated data to DOM elements
+      document.getElementById('temp').innerHTML = Math.round(allData.temp)+ 'degrees';
+      document.getElementById('content').innerHTML = allData.feel;
+      document.getElementById("date").innerHTML =allData.date;
+    })
+   
 }
