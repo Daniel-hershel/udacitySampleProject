@@ -10,7 +10,7 @@ const express = require('express');
 const app = express();
 
 // Cors for cross origin allowance
-var cors = require('cors');
+const cors = require('cors');
 app.use(cors());
 
 // Initialize the main project folder
