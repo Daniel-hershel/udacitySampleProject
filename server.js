@@ -1,7 +1,7 @@
 // Setup empty JS object to act as endpoint for all routes
-testData = {
+projectData = {
 
-}
+};
 
 // Express to run server
 const express = require('express');
@@ -14,40 +14,41 @@ var cors = require('cors');
 app.use(cors());
 
 // Initialize the main project folder
-app.use(express.static('website'))
+app.use(express.static('website'));
 
 // Spin up the server
-const server = app.listen(3000, listening)
+const server = app.listen(3000, listening);
 // Callback to debug
 function listening(){
-  console.log('listening');
-    }
+  // console.log(server);
+  console.log(app);
+    };
 
 // Initialize all route with a callback function
-app.get('/all', sendData)
+app.get('/all', sendData);
 
 // Callback function to complete GET '/all'
 function sendData (req, res) {
-  // res.send('Working')
-  res.send(testData)
-}
+  // res.send('Green')
+  res.send(projectData);
+};
 
 // Test for adding data from the Server side & Route to use on Client side
 app.get('/add/:temp/:feel/:date', addEntry)
 function addEntry(request, response){
   let data = request.params;
-  console.log(data)
+  console.log(data);
   let temp = data.temp;
   let feel= data.feel;
   let date= data.date;
   
-  testData["temp"] = temp;
-  testData["feel"] = feel;
-  testData["date"] = date;
-  response.send(testData)
+  projectData["temp"] = temp;
+  projectData["feel"] = feel;
+  projectData["date"] = date;
+  response.send(projectData);
 
-  console.log(testData)
-}
+  console.log(projectData);
+};
 
 
 
