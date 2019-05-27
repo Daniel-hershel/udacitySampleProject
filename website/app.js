@@ -31,7 +31,7 @@ document.getElementById('generate').addEventListener('click', performAction);
     });
 
 /* Function to POST data */
-async function postData( url = '', data = {}){
+const postData = async ( url = '', data = {})=>{
   console.log(data)
     const response = await fetch(url, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -56,7 +56,7 @@ async function postData( url = '', data = {}){
 }
 
 /* Function to GET Project Data */
-async function retrieveData () { 
+ const retrieveData = async () =>{ 
   const request = await fetch('/all');
   try {
   // Transform into JSON
