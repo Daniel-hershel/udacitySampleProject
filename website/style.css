@@ -8,11 +8,12 @@ body{
     display: grid;
     grid-template-rows: 5vh 10vh 25vh 35vh;
     height:100vh;
-    background: #014955;
-    color: #e4d1d3;
-    
+    background: #f23557;
+    color: #f0d43a;
     justify-content: center;
     grid-gap: 4vh;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
 }
 
 .holder{
@@ -28,40 +29,84 @@ body{
 
 .entry{
     height: 35vh;
+    background: rgba(59, 74, 107, .4);
+
 }
 
 #entryHolder{
     margin-top: 33px;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
 }
 label{
     display:block;
     font-size: 27px;
 }
 
+.headline {
+    font-family: 'Ranga', cursive;
+    font-size: 75px;
+    
+}
 .title{
-    font-size: 27px;
+    font-size: 40px;
+    font-family: 'Ranga', cursive;
+
 }
 input{
     display:block;
     height: 60px;
-    width: 180px;
-    background:#ffb576;
-    color:#c6394d;
+    width: 320px;
+    /* background:#ffb576; */
+    background:#22b2da;
+    color: #f0d43a;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+    border: none;
+
+
 }
 button{
-    width: 250px;
+    width: 400px;
     height: 100px;
-    background: #dd0a35;
-    color: white;
-    font-size: 16px;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-
+    background: #3b4a6b;
+    color: #f0d43a;
+    font-size: 26px;
+    font-family: 'Oswald', sans-serif;
+    border: none;
 }
 h1{
     font-size: 36px;
 }
 
 textarea{
-    background:#ffb576;
+    background:#22b2da;
+    color: #f0d43a;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+
 
 }
+/* TO DO: Reset style for HTML element on active to have no border*/
+/* Style for Placeholder Text*/
+::placeholder { /* Firefox, Chrome, Opera */ 
+    color: #f0d43a; 
+    font-family: 'Oswald', sans-serif;
+
+} 
+  
+:-ms-input-placeholder { /* Internet Explorer 10-11 */ 
+    color: #f0d43a; 
+    font-family: 'Oswald', sans-serif;
+
+} 
+  
+::-ms-input-placeholder { /* Microsoft Edge */ 
+    color: #f0d43a; 
+    font-family: 'Oswald', sans-serif;
+
+} 

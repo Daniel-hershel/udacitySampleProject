@@ -63,7 +63,7 @@ const postData = async ( url = '', data = {})=>{
   const allData = await request.json()
   console.log(allData)
   // Write updated data to DOM elements
-  document.getElementById('temp').innerHTML = Math.round(allData.temp)+ 'degrees';
+  document.getElementById('temp').innerHTML = Math.round(allData.temp)+ ' degrees';
   document.getElementById('content').innerHTML = allData.feel;
   document.getElementById("date").innerHTML =allData.date;
   }
