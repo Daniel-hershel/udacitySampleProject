@@ -1,12 +1,10 @@
-// Possibly setup client side tests here as separate code?
-
 // Personal API Key for OpenWeatherMap API
 const apiKey = '&appid=9f15e45060210ec849a698b3298f0bed&units=imperial';
 
 // Event listener to add function to existing HTML DOM element
 document.getElementById('generate').addEventListener('click', performAction);
 
-// Function called by event listener
+/* Function called by event listener */
 function performAction(e) {
   // Retrieve the zipcode entered by the user via the DOM input element with the ID 'zip'
   let userZip = document.getElementById('zip').value;
@@ -31,42 +29,39 @@ function performAction(e) {
       console.log('There has been a problem with your fetch operation: ', error.message);
     });
 
-    // function postData( url, data){
-    function postData( url = '', data = {}){
-      console.log(data)
-        return fetch('/add', {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        // mode: 'cors', // no-cors, cors, *same-origin
-        // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'same-origin', // include, *same-origin, omit
-        headers: {
-            'Content-Type': 'application/json',
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: JSON.stringify(data), // body data type must match "Content-Type" header        
+/* Function to POST data */
+function postData( url = '', data = {}){
+  console.log(data)
+    return fetch('/add', {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    // mode: 'cors', // no-cors, cors, *same-origin
+    // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: JSON.stringify(data), // body data type must match "Content-Type" header        
+})
+.then(function(response){
+  return response.json()
+}).then(function(body){
+  console.log(body);
+});
+}
 
-        // redirect: 'follow', // manual, *follow, error
-        // referrer: 'no-referrer', // no-referrer, *client
-    })
-    .then(function(response){
-      return response.json()
-    }).then(function(body){
-      console.log(body);
-      // alert(self.refs.task.value)
-    });
-    }
+/* GET Project Data */
+fetch('/all')
+// Transform into JSON
+.then((resp) => resp.json())
+.then(function(allData){
+  console.log(allData)
+  // Write updated data to DOM elements
+  document.getElementById('temp').innerHTML = Math.round(allData.temp)+ 'degrees';
+  document.getElementById('content').innerHTML = allData.feel;
+  document.getElementById("date").innerHTML =allData.date;
+}).catch(function(error) {
+  console.log('There has been a problem with your fetch operation: ', error.message);
+});
 
-    fetch('/all')
-    // Transform into JSON
-    .then((resp) => resp.json())
-    .then(function(allData){
-      console.log(allData)
-      // Write updated data to DOM elements
-      document.getElementById('temp').innerHTML = Math.round(allData.temp)+ 'degrees';
-      document.getElementById('content').innerHTML = allData.feel;
-      document.getElementById("date").innerHTML =allData.date;
-    }).catch(function(error) {
-      console.log('There has been a problem with your fetch operation: ', error.message);
-    });
-   
 }
