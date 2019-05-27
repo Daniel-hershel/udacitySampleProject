@@ -22,24 +22,39 @@ function performAction(e) {
     let feeling = document.getElementById('feelings').value;
     // Create a new date entry for JS object
     let d = new Date();
-    let NewDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+    let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
     // Use a chained fetch to access the 'add' route created in the server
     // And create a new entry using the URL structure and the variables retrieved above
-    fetch('add/'+ temp + '/'+feeling+ '/'+ NewDate)
-    // Transform data into JSON
-    .then((resp) => resp.json())
-    // Function to execute once second fetch-- to URL 'add' is successfully completed-- to write the results back to the UI for updates to the DOM elements
-    .then(function(newData){
-      console.log(newData);
-      // Fetch the endpoint of /all route set up in server
-   
+    postData('/add', {temp:temp, feeling:feeling, date:newDate})
+
     }).catch(function(error) {
       console.log('There has been a problem with your fetch operation: ', error.message);
     });
-    }).catch(function(error) {
-      console.log('There has been a problem with your fetch operation: ', error.message);
-    });;
 
+    // function postData( url, data){
+    function postData( url = '', data = {}){
+      console.log(data)
+        return fetch('/add', {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        // mode: 'cors', // no-cors, cors, *same-origin
+        // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify(data), // body data type must match "Content-Type" header        
+
+        // redirect: 'follow', // manual, *follow, error
+        // referrer: 'no-referrer', // no-referrer, *client
+    })
+    .then(function(response){
+      return response.json()
+    }).then(function(body){
+      console.log(body);
+      // alert(self.refs.task.value)
+    });
+    }
 
     fetch('/all')
     // Transform into JSON
@@ -50,6 +65,8 @@ function performAction(e) {
       document.getElementById('temp').innerHTML = Math.round(allData.temp)+ 'degrees';
       document.getElementById('content').innerHTML = allData.feel;
       document.getElementById("date").innerHTML =allData.date;
-    })
+    }).catch(function(error) {
+      console.log('There has been a problem with your fetch operation: ', error.message);
+    });
    
 }

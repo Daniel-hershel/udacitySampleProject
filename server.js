@@ -8,6 +8,8 @@ const express = require('express');
 // Start up an instance of app
 const app = express();
 
+const bodyParser = require('body-parser')
+const http = require('http')
 // Cors for cross origin allowance
 const cors = require('cors');
 app.use(cors());
@@ -15,13 +17,24 @@ app.use(cors());
 // Initialize the main project folder
 app.use(express.static('website'));
 
+/* Middleware*/
+//Here we are configuring express to use body-parser as middle-ware.
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 // Spin up the server
 const server = app.listen(3000, listening);
 // Callback to debug
 function listening(){
-  // console.log(server);
-  console.log(app);
-};
+    // console.log(server);
+    console.log('on');
+  };
+  
+// Do I need a second server running
+// http.createServer(function(req,res){
+//   res.write('Hello World!'); //write a response to the client
+//   res.end(); //end the response
+// }).listen(8080); //the server object listens on port 8080
 
 // Initialize all route with a callback function
 app.get('/all', sendData);
@@ -32,37 +45,21 @@ function sendData (request, response) {
   response.send(projectData);
 };
 
-// Test for adding data from the Server side & Route to use on Client side
-app.get('/add/:temp/:feel/:date', addEntry);
-// Function to execute 
-function addEntry(request, response){
-  let data = request.params;
-  console.log(data);
+app.post('/add', (request,response)=>{
+  // console.log(request.body)
+  // add to projectData
+  let data = request.body;
+  console.log(data.temp);
 
-  let temp = data.temp;
-  let feel= data.feel;
-  let date= data.date;
-  
+  // let temp = data.temp;
+  // let feel= data.feel;
+  // let date= data.date;
   // Create new entry for JS Object Endpoint
-  projectData["temp"] = temp;
-  projectData["feel"] = feel;
-  projectData["date"] = date;
+  projectData["temp"] = data.temp;
+  projectData["feel"] = data.feeling;
+  projectData["date"] = data.date;
 
   // Send response to Endpoint
   response.send(projectData);
-  
-  // console.log(projectData);
-};
-
-
-
-
-// Depreciated solution of using an external JSON file as route endpoint
-// const fs = require('fs');
-// const cpuData = fs.readFileSync('externalData.json');
-// const data = JSON.parse(cpuData)
-// console.log(data)
-// Depreciated external JSON solution cont...
-// var bodyParser = require('body-parser');
-// app.use(bodyParser.json()); // support json encoded bodies
-// app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+  // res.send('updated')
+})
