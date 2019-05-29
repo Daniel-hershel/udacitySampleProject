@@ -6,7 +6,7 @@ body{
 
 #app{
     display: grid;
-    grid-template-rows: 5vh 10vh 25vh 35vh;
+    grid-template-rows: 5vh 10vh 35vh 35vh;
     height:100vh;
     background: #f23557;
     color: #f0d43a;
