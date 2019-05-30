@@ -17,11 +17,7 @@ body{
 }
 
 .holder{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 75vw;
+
 }
 
 .entry{
@@ -29,10 +25,7 @@ body{
 }
 
 #entryHolder{
-    margin-top: 33px;
-    font-size: 40px;
-    display: flex;
-    flex-direction: column;
+
 }
 
 #date{
@@ -46,18 +39,18 @@ body{
 #content{
 
 }
+
+.headline {
+
+}
+.title{
+
+}
+
+/*  Basic Styling To Override Default For Basic HTML Elements */
 label{
     display:block;
     font-size: 27px;
-}
-
-.headline {
-    font-family: 'Ranga', cursive;
-    font-size: 75px;
-}
-.title{
-    font-size: 40px;
-    font-family: 'Ranga', cursive;
 }
 
 input{
