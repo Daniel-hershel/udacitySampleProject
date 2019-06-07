@@ -30,25 +30,22 @@ const server = app.listen(port, listening);
     console.log(`running on localhost: ${port}`);
   };
 
+// No Callback
+app.get('/all', function(request, response){
+    response.send(projectData)
+})
+
 // Initialize all route with a callback function
-app.get('/all', sendData);
+// app.get('/all', sendData);
 
 // Callback function to complete GET '/all'
 function sendData (request, response) {
   // response.send('Green') // If we want to make a mini test framekwork in here
   response.send(projectData);
+//   response.send('hello world')
 };
 
-app.post('/add', (request,response)=>{
-  // console.log(request.body)
-  let data = request.body;
-  console.log(data.temp);
-
-  // Create new entry for JS Object Endpoint
-  projectData["temp"] = data.temp;
-  projectData["feel"] = data.feeling;
-  projectData["date"] = data.date;
-
-  // Send response to Endpoint
-  response.send(projectData);
+app.post('/add', function(request, response){
+    console.log(request.body)
 })
+
