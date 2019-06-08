@@ -19,5 +19,4 @@ const postData = async ( url = '', data = {})=>{
       }
   }
 
-  let hold = postData('/add', {answer:42})
-  console.log(hold)
+  postData('/add', {answer:42})
