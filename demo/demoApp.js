@@ -19,4 +19,6 @@ const postData = async ( url = '', data = {})=>{
       }
   }
 
-  postData('/add', {answer:42})
+  // postData('/add', {answer:42})
+
+  postData('/addMovie', {movie:' the matrix', score: 5})

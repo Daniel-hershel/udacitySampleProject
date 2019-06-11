@@ -21,52 +21,28 @@ app.use(cors());
 // Initialize the main project folder
 app.use(express.static('website'));
 
-const port = 3000;
+const port = 8000;
 // Spin up the server
 const server = app.listen(port, listening);
 // Callback to debug
  function listening(){
-    // console.log(server);
+    console.log('server running');
     console.log(`running on localhost: ${port}`);
+
   };
+  // Initialize the main project folder
+app.use(express.static('demo'));
 
 // No Callback
 app.get('/all', function(request, response){
     response.send(projectData)
 })
 
-// Initialize all route with a callback function
-// app.get('/all', sendData);
+const data = []
+app.post('/addMovie', addMovie )
 
-// Callback function to complete GET '/all'
-function sendData (request, response) {
-  // response.send('Green') // If we want to make a mini test framekwork in here
-  response.send(projectData);
-//   response.send('hello world')
-};
+function addMovie (req, res){
+    console.log(req.body)
 
-app.post('/add', function(request, response){
-    // let data = request.body;
-    let newData = {animal:"turtle", score:7}
-    let newEntry = {
-        animal: newData.animal,
-        score: newData.score
-    }    
-    data.push(newEntry)
-    // console.log(data)
-})
-const data = [{animal:"elephant", score: 10},{animal:"kangaroo",score:3}]
-
-function makeData(request){
-    let newData = request.body;
-    let newEntry = {
-        animal: newData.animal,
-        score: newData.score
-    }    
-    data.push(newEntry)
-    console.log(data)
 }
-
-makeData({body:{animal:"turtle", score:7}})
-console.log(data)
 

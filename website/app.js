@@ -1,35 +1,46 @@
 // Personal API Key for OpenWeatherMap API
-const apiKey = '&appid=9f15e45060210ec849a698b3298f0bed&units=imperial';
-
+let baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip='
+let apiKey = '&appid=9f15e45060210ec849a698b3298f0bed&units=imperial';
+let d = new Date();
+let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 // Event listener to add function to existing HTML DOM element
 document.getElementById('generate').addEventListener('click', performAction);
 
 /* Function called by event listener */
  function performAction(e) {
   // Retrieve the zipcode entered by the user via the DOM input element with the ID 'zip'
-  let userZip = document.getElementById('zip').value;
-  // Use the fetch API to retrieve the current weather data for the users zip code
-  fetch('http://api.openweathermap.org/data/2.5/weather?zip='+userZip+apiKey)
-  // Transform the data into json
-  .then((resp) => resp.json())
-  // Function to execute once data has successfully been retrieved as JSON-- Creating a new the pieces for a new entry in our JS object endpoint
-  .then(function(data){
-    // Set vairable to hold values for the current temperature  
-    let temp = data.main.temp;
+    let zip = document.getElementById('zip').value;
     // Retrieve the users journal entry via the HTML DOM input element with the ID 'feelings'
     let feeling = document.getElementById('feelings').value;
-    // Create a new date entry for JS object
-    let d = new Date();
-    let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
-    // Call function to POST data with params
-    postData('/add', {temp:temp, feeling:feeling, date:newDate})
-    // Call function to Get data and update UI
-    retrieveData()
 
-    }).catch(function(error) {
-      console.log('There has been a problem with your fetch operation: ', error.message);
-    });
+    getWeather(baseURL, zip, apiKey)
+    // .then((resp) => resp.json())
+    // Function to execute once data has successfully been retrieved as JSON-- Creating a new the pieces for a new entry in our JS object endpoint
+    .then(function(data){
+      console.log(data)
+      // Set vairable to hold values for the current temperature  
+      let temp = data.main.temp;
+      // Call function to POST data with params
+      postData('/add', {temp:temp, feeling:feeling, date:newDate})
+     })
+     .then(
+      // Call function to Get data and update UI
+      retrieveData()
+      );
 
+}
+
+/* Function to GET Web API Data*/
+const getWeather = async (baseURL, zip, key)=>{
+    // Use the fetch API to retrieve the current weather data for the users zip code
+    const res = await fetch(baseURL+zip+key)
+    if(!res.ok){
+      throw new Error(res.status);
+    }
+
+    const data = await res.json();
+    return data;
+}
 /* Function to POST data */
 const postData = async ( url = '', data = {})=>{
   console.log(data)
@@ -71,6 +82,4 @@ const postData = async ( url = '', data = {})=>{
     console.log("error", error);
     // appropriately handle the error
   }
-}
-
 }
