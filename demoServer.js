@@ -24,6 +24,7 @@ app.use(express.static('demo'));
 const port = 8000;
 // Spin up the server
 const server = app.listen(port, listening);
+// const server = app.listen(port, ()=>{console.log(`running on localhost: ${port}`)})
 // Callback to debug
  function listening(){
     console.log('server running');
