@@ -19,7 +19,7 @@ const cors = require('cors');
 app.use(cors());
 
 // Initialize the main project folder
-app.use(express.static('website'));
+app.use(express.static('demo'));
 
 const port = 8000;
 // Spin up the server
@@ -30,14 +30,48 @@ const server = app.listen(port, listening);
     console.log(`running on localhost: ${port}`);
 
   };
-  // Initialize the main project folder
-app.use(express.static('demo'));
 
 // No Callback
-app.get('/all', function(request, response){
-    response.send(projectData)
-})
+// app.get('/all', function(request, response){
+//     response.send(projectData)
+// })
 
+
+// Animal Web API Example
+const animalData = [];
+const fakeData = {
+  animal: 'lion',
+  fact: 'lions are fun'
+}
+
+app.get('/all', getData)
+
+function getData(req,res){
+  res.send(animalData)
+  console.log(animalData)
+}
+app.get('/animalData', getFakeData)
+
+function getFakeData(req, res){
+  res.send(fakeData)
+}
+app.post('/addAnimal', addAnimal);
+
+function addAnimal(req,res){
+
+  newEntry = {
+    animal: req.body.animal,
+    facts: req.body.fact,
+    fav: req.body.fav
+  }
+
+  animalData.push(newEntry)
+  res.send(animalData)
+  console.log(animalData)
+}
+
+
+// MOVIE EXAMPLE
 const data = []
 app.post('/addMovie', addMovie )
 

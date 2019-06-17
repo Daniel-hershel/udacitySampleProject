@@ -34,12 +34,14 @@ document.getElementById('generate').addEventListener('click', performAction);
 const getWeather = async (baseURL, zip, key)=>{
     // Use the fetch API to retrieve the current weather data for the users zip code
     const res = await fetch(baseURL+zip+key)
-    if(!res.ok){
-      throw new Error(res.status);
-    }
+    try {
 
-    const data = await res.json();
-    return data;
+      const data = await res.json();
+      return data;
+    }  catch(error) {
+      console.log("error", error);
+      // appropriately handle the error
+    }
 }
 /* Function to POST data */
 const postData = async ( url = '', data = {})=>{
