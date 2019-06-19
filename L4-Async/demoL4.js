@@ -1,11 +1,4 @@
-/*SYNC REVIEW*/
-setTimeout(function(){ console.log('third') }, 3000);
-function sync(){
-console.log('first')
-}
 
-sync()
-console.log('second')
 
 /* POST EXAMPLE */
 const postData = async ( url = '', data = {})=>{
@@ -34,30 +27,30 @@ const postData = async ( url = '', data = {})=>{
 
 
   /* WEB API WITH FETCH DEMO-- @dsb need to rewrite code for animal API example */
-// let baseURL = 'http://api.animalinfo.org/data/?animal='
-// let apiKey = '&appid=9f15e45060...';
+let baseURL = 'http://api.animalinfo.org/data/?animal='
+let apiKey = '&appid=9f15e45060...';
 
-// document.getElementById('generate').addEventListener('click', performAction);
+document.getElementById('generate').addEventListener('click', performAction);
 
-// function performAction(e){
-// const newAnimal =  document.getElementById('animal').value;
-// getAnimalDemo(baseURL,newAnimal, apiKey)
+function performAction(e){
+const newAnimal =  document.getElementById('animal').value;
+getAnimalDemo(baseURL,newAnimal, apiKey)
 
-// }
-// const getAnimalDemo = async (baseURL, animal, key)=>{
+}
+const getAnimalDemo = async (baseURL, animal, key)=>{
 
-//   const res = await fetch(baseURL+animal+key)
-//   try {
+  const res = await fetch(baseURL+animal+key)
+  try {
 
-//     const data = await res.json();
-//     console.log(data)
-//     postData('/addAnimal', data)
-//     // return data;
-//   }  catch(error) {
-//     console.log("error", error);
-//     // appropriately handle the error
-//   }
-// }
+    const data = await res.json();
+    console.log(data)
+    postData('/addAnimal', data)
+    // return data;
+  }  catch(error) {
+    console.log("error", error);
+    // appropriately handle the error
+  }
+}
 
 /* CHAINED PROMISES TO GET AND POST DATA */
 

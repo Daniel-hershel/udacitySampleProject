@@ -1,3 +1,7 @@
+// Setup empty JS object to act as endpoint for all routes
+projectData = {
+
+};
 // Express to run server and routes
 const express = require('express');
 
@@ -27,3 +31,14 @@ const server = app.listen(port, listening);
     console.log(`running on localhost: ${port}`);
 
   };
+
+
+// MOVIE EXAMPLE
+const data = []
+app.post('/addMovie', addMovie )
+
+function addMovie (req, res){
+  data.push(req.body)
+  console.log(data)
+}
+
