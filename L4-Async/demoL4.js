@@ -26,7 +26,7 @@ const postData = async ( url = '', data = {})=>{
   // postData('/addMovie', {movie:' the matrix', score: 5})
 
 
-  /* WEB API WITH FETCH DEMO-- @dsb need to rewrite code for animal API example */
+  /* WEB API WITH FETCH DEMO--  */
 let baseURL = 'http://api.animalinfo.org/data/?animal='
 let apiKey = '&appid=9f15e45060...';
 
@@ -57,35 +57,22 @@ const getAnimalDemo = async (baseURL, animal, key)=>{
 document.getElementById('generate').addEventListener('click', performAction);
 
 function performAction(e){
-const newAnimal =  document.getElementById('animal').value;
-const favFact =  document.getElementById('favorite').value;
-
+const fav =  "My favorite animal is awesome!";
+// Faking an API call
 getAnimal('/animalData',)
 // New Syntax!
 .then(function(data){
   // Add data
   console.log(data)
-  postData('/addAnimal', {animal:data.animal, fact: data.fact, fav:favFact} )
+  postData('/addAnimal', {animal:data.animal, fact: data.fact, fav:fav} )
 })
 .then(
-  updateUI()
+  // updateUI()
 )
 
 }
 
-const updateUI = async () => {
-  const request = await fetch('/all');
-  try{
-    const allData = await request.json()
-    console.log(allData)
-  document.getElementById('animalName').innerHTML = allData[0].animal;
-  document.getElementById('animalFact').innerHTML = allData[0].facts;
-  document.getElementById('animalFav').innerHTML = allData[0].fav;
 
-  }catch(error){
-    console.log("error", error)
-  }
-}
 const getAnimal = async (url) =>{
   const res = await fetch(url);
   try {
@@ -99,6 +86,20 @@ const getAnimal = async (url) =>{
   }
 
 }
+const updateUI = async () => {
+  const request = await fetch('/all');
+  try{
+    const allData = await request.json()
+    console.log(allData)
+  document.getElementById('animalName').innerHTML = allData[0].animal;
+  document.getElementById('animalFact').innerHTML = allData[0].facts;
+  document.getElementById('animalFav').innerHTML = allData[0].fav;
+
+  }catch(error){
+    console.log("error", error)
+  }
+}
+
 /* UPDATE UI DEMO */
 // Call our getAnimal function then
 // then update DOM with info
