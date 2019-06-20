@@ -39,11 +39,22 @@ const server = app.listen(port, listening);
 
 
 // Animal Web API Example
-const animalData = [];
+
+// Dummy API Enpoint 
 const fakeData = {
   animal: 'lion',
   fact: 'lions are fun'
 }
+
+
+app.get('/fakeAnimalData', getFakeData)
+
+function getFakeData(req, res){
+  res.send(fakeData)
+}
+
+
+const animalData = [];
 
 app.get('/all', getData)
 
@@ -51,11 +62,9 @@ function getData(req,res){
   res.send(animalData)
   console.log(animalData)
 }
-app.get('/animalData', getFakeData)
 
-function getFakeData(req, res){
-  res.send(fakeData)
-}
+// POST ROUTE
+
 app.post('/addAnimal', addAnimal);
 
 function addAnimal(req,res){
@@ -71,13 +80,4 @@ function addAnimal(req,res){
   console.log(animalData)
 }
 
-
-// MOVIE EXAMPLE
-const data = []
-app.post('/addMovie', addMovie )
-
-function addMovie (req, res){
-    console.log(req.body)
-
-}
 
